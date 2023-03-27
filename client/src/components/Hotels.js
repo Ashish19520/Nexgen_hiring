@@ -3,15 +3,19 @@ import "./styles.css"
 import { doBooking } from '../services.js/api';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useLocation } from 'react-router-dom';
 
-function BookHotel() {
+function BookHotel({hotel}) {
+  const location = useLocation()
+  const item=location?.state?.state;
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         mobile: '',
         checkin: '',
         checkout: '',
-        roomnumber: ''
+        roomnumber:item.roomnumber,
+        roomtype:item.roomtype
     });
 
     const handleChange = (event) => {
@@ -24,7 +28,13 @@ function BookHotel() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response=await doBooking(formData);
+        const response=await doBooking(formData,item._id);
+        if(response.message==="your hotel room is booked successfuly"){
+          alert("your hotel room is booked successfuly")
+        }
+        else{
+          alert("Room is book already")
+        }
         console.log(formData);  
     };
 
@@ -43,7 +53,7 @@ function BookHotel() {
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>Mobile</Form.Label>
-          <Form.Control type="number" name="mobile" value={formData.mobile} onChange={handleChange} />
+          <Form.Control type="mobile" name="mobile" value={formData.mobile} onChange={handleChange} />
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>Checkin Date</Form.Label>
@@ -55,7 +65,11 @@ function BookHotel() {
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>Room number</Form.Label>
-          <Form.Control type="text" name="roomnumber" value={formData.roomnumber} onChange={handleChange}/>
+          <Form.Control type="text" name="roomnumber" value={formData.roomnumber}/>
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>type</Form.Label>
+          <Form.Control type="text" name="roomnumber" value={formData.roomtype}/>
         </Form.Group>
         <Button variant="primary" onClick={handleSubmit}>
           Submit

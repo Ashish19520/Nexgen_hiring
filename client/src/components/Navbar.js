@@ -14,7 +14,7 @@ function Navbars() {
           <Nav className="me-auto">
             <Link className='navs' to="/">Home</Link>
             <Link className='navs' to="/book">Book hotel</Link>
-            <Link  className='navs'to="/mybooking">Pricing</Link>
+            {/* <Link  className='navs'to="/mybooking">Pricing</Link> */}
           </Nav>
         </Container>
       </Navbar>

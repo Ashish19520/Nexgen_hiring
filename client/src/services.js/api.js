@@ -1,8 +1,8 @@
 const baseUrl="http://localhost:5000/api/"
 
-export const doBooking = async (body) => {
+export const doBooking = async (body,id) => {
     try {
-      const fetchResponse = await fetch(baseUrl+"createbooking", {
+      const fetchResponse = await fetch(baseUrl+"createbooking/"+id, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -17,6 +17,7 @@ export const doBooking = async (body) => {
       return error;
     }
   };
+  
   export const allAvailableHotels = async () => {
     try {
       const fetchResponse = await fetch(baseUrl+"getavailablerooms", {

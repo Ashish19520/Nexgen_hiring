@@ -1,21 +1,11 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
-import { useEffect,useState } from 'react';
-import { allAvailableHotels } from '../services.js/api';
 import { useNavigate,Link } from 'react-router-dom';
 import "../components/styles.css"
 
-export default function Home() {
+export default function Home({hotel}) {
     const navigate=useNavigate();
-    const [hotel,setHotel]=useState([]);
-    useEffect(() => {
-        fetch();  
-    }, [])
     
-    const fetch=async()=>{
-        const response=await allAvailableHotels();
-        setHotel(response);
-    }
   return (
     <div className='available'>
     {hotel.map((item)=>(
@@ -27,7 +17,7 @@ export default function Home() {
       <Card.Text>
         
       </Card.Text>
-      <Link to="/book" onClick={()=>navigate("/book")}>Book Now</Link>
+      <Link to="/book" state={{state:item}} onClick={()=>navigate("/book")}>Book Now</Link>
      
     </Card.Body>
   </Card>
