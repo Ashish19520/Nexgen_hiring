@@ -17,3 +17,16 @@ export const doBooking = async (body) => {
       return error;
     }
   };
+  export const allAvailableHotels = async () => {
+    try {
+      const fetchResponse = await fetch(baseUrl+"getavailablerooms", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      return await fetchResponse.json();
+    } catch (error) {
+      return error;
+    }
+  };

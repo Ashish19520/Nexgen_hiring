@@ -4,3 +4,31 @@
     justify-content:start;
     
 }
+.available{
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+.card{
+   width: calc(100%/3);
+}
+.navs{
+    color:white;
+    font-weight:700 ;
+    font-size: 16px;
+    margin:10px;
+
+}
+.form-section{
+    width:500px;
+    margin:0 auto;
+    background-color:grey;
+    padding:20px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.back{
+    background: url("../../public/images/download4\ .jpg") no-repeat center left / 50% auto,
+     url("../../public/images/download5.jpg") no-repeat center right / 50% auto;
+}

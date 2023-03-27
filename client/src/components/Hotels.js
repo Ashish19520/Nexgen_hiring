@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import "./styles.css"
 import { doBooking } from '../services.js/api';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 function BookHotel() {
     const [formData, setFormData] = useState({
         name: '',
@@ -22,53 +25,47 @@ function BookHotel() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response=await doBooking(formData);
-        console.log(response);  
+        console.log(formData);  
     };
 
     return (
-        <div className='form'>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Email:
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Mobile:
-                        <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Check-in:
-                        <input type="date" name="checkin" value={formData.checkin} onChange={handleChange} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Check-out:
-                        <input type="date" name="checkout" value={formData.checkout} onChange={handleChange} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Room number:
-                        <input type="text" name="roomnumber" value={formData.roomnumber} onChange={handleChange} />
-                    </label>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
+        <div className='back'>
+        <Form className='form-section'>
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter name" />
+        
+        </Form.Group>
+  
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email" />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>Mobile</Form.Label>
+          <Form.Control type="number" name="mobile" value={formData.mobile} onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>Checkin Date</Form.Label>
+          <Form.Control type="date" name="checkin" value={formData.checkin} onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>Checkout date</Form.Label>
+          <Form.Control type="date" name="checkout" value={formData.checkout} onChange={handleChange} />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>Room number</Form.Label>
+          <Form.Control type="text" name="roomnumber" value={formData.roomnumber} onChange={handleChange}/>
+        </Form.Group>
+        <Button variant="primary" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form>
+      </div>
     );
 }
 
 export default BookHotel;
+
+
+
