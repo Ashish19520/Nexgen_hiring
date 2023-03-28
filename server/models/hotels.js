@@ -1,7 +1,7 @@
 import mongoose  from "mongoose";
 
 const hotelSchema=mongoose.Schema({
-    roomnumber:{ type: String, unique: true},
+    roomnumber:{ type: String, required: true, unique: true },
     roomtype:String,
     status:Boolean,
     createdAt:{

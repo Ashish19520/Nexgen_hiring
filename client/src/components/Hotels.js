@@ -29,12 +29,8 @@ function BookHotel({hotel}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response=await doBooking(formData,item._id);
-        if(response.message==="your hotel room is booked successfuly"){
-          alert("your hotel room is booked successfuly")
-        }
-        else{
-          alert("Room is book already")
-        }
+          alert(response.message);
+       
         console.log(formData);  
     };
 
