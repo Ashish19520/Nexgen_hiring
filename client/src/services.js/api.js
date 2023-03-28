@@ -8,9 +8,7 @@ export const doBooking = async (body,id) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-         body
-        }),
+       body:JSON.stringify(body)
       });
       return await fetchResponse.json();
     } catch (error) {

@@ -8,7 +8,7 @@ export default function Home({hotel}) {
     
   return (
     <div className='available'>
-    {hotel.map((item)=>(
+    {hotel?.map((item)=>(
     <Card className='card'>
     <Card.Body>
         <Card.Img imd src='images/download3.jpg'></Card.Img>

@@ -10,7 +10,7 @@ const bookingSchema=mongoose.Schema({
     checkout:{
         type:Date,
     },
-    roomnumber: { type: String, required: true, unique: true },
+    roomnumber: { type: String, required: true },
     roomtype:String
 })
 

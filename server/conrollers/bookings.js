@@ -22,15 +22,27 @@ export const getMyBookingDetails = async (req, res) => {
   };
 
 export const createBooking=async (req,res)=>{
-    const {id: _id}=req.params;
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Rooms Available');
-    const newBooking=new BookingSchema(req.body.body);
    try {
-        await newBooking.save();
-        const updateHotel=await HotelsSchema.findByIdAndUpdate(_id,{status:"false"},{new:true});
-        res.status(200).json({message:"your hotel room is booked successfuly",newBooking});
-    } catch (error) {
+    // const updateHotel=await BookingSchema.find({$and:[{roomnumber:req.body.roomnumber, checkin:{ $gte: req.body.checkin},checkout:{ $lte: req.body.checkout}}]});
+    const updateHotel= await BookingSchema.find({
+      $and: [
+        { roomnumber: req.body.roomnumber },
+        {
+          $or: [
+            { checkin: { $lte: req.body.checkin }, checkout: { $gte: req.body.checkin } },
+            { checkin: { $lte: req.body.checkout }, checkout: { $gte: req.body.checkout } },
+            { checkin: { $gte: req.body.checkin }, checkout: { $lte: req.body.checkout } }
+          ]
+        }
+      ]
+    });
+        if(updateHotel.length===0){
+          const newBooking=new BookingSchema(req.body);
+          await newBooking.save();
+          res.status(200).json({message:"your hotel room is booked successfuly",newBooking});
+        }else{
         res.status(409).json({message:"sorry room is booked already"});
-        console.log(error);
+        }
     }
+    catch (error) {console.log(error);}
 }
