@@ -1,11 +1,10 @@
 import express from 'express';
-import { getBookingsDetails,createBooking,getMyBookingDetails} from '../conrollers/bookings.js';
+import {createBooking} from '../conrollers/bookings.js';
 
 const router=express.Router();
 
-router.get('/getallbooking',getBookingsDetails);
-router.get('/getmybooking/:id',getBookingsDetails);
-router.post('/createbooking/:id',createBooking);
+
+router.post('/createbooking',createBooking);
 
 // router.patch('/:id',updatePost);
 // router.delete('/:id',deletePost);

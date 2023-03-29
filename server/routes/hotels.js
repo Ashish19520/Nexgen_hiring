@@ -1,11 +1,10 @@
 import express from 'express';
-import { getHotels,createHotels,getAvailableRooms,bookHotelRoom} from '../conrollers/hotels.js';
+import { getHotels,createHotels} from '../conrollers/rooms.js';
 
 const router=express.Router();
 
 router.get('/getallhotels',getHotels);
-router.get('/getavailablerooms',getAvailableRooms);
 router.post('/createhotels',createHotels);
-router.put('/bookhotelroom/:id',bookHotelRoom);
+
 
 export default router;
