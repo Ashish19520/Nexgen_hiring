@@ -5,15 +5,17 @@ import "../components/styles.css"
 
 export default function Home({hotel}) {
     const navigate=useNavigate();
-    
+   
   return (
     <div className='available'>
-    {hotel?.map((item)=>(
-    <Card className='card'>
+    {hotel?.map((item,i)=>(
+
+    <Card className='card' key={i}>
     <Card.Body>
         <Card.Img imd src='images/download3.jpg'></Card.Img>
-      <Card.Title>{item.roomnumber}</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">{item.roomtype}</Card.Subtitle>
+      <Card.Title>Room number:{item.roomNumber}</Card.Title>
+      <Card.Subtitle className="mb-2 text-muted">room-type:{item.type}</Card.Subtitle>
+      <Card.Subtitle className="mb-2 text-muted">price:{item.price}$</Card.Subtitle>
       <Card.Text>
         
       </Card.Text>
