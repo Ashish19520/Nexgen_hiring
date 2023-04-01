@@ -29,7 +29,6 @@ function BookHotel({hotel,start,end,routeData}) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
         const response=await doBooking(formData,item._id);
           alert(response.message);
         routeData(location.pathname);
